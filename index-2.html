@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contador de Cliques</title>
+  </head>
+  <body>
+    <button id="incrementarBtn">INCREMENTAR</button>
+    <button id="zerarBtn">ZERAR CONTADOR</button>
+    <p id="contadorTexto">O contador está com 0 cliques.</p>
+  </body>
+  <script>
+    function atualizarContador(cliques) {
+      const contadorTexto = document.getElementById("contadorTexto");
+      contadorTexto.textContent = `O contador está com ${cliques} ${
+        cliques === 1 ? "clique" : "cliques"
+      }`;
+    }
+
+    function incrementarContador() {
+      if (typeof Storage !== "undefined") {
+        let contador = parseInt(localStorage.getItem("contador") || 0);
+        contador++;
+        localStorage.setItem("contador", contador);
+        atualizarContador(contador);
+      } else {
+        alert("Seu navegador não suporta a função de armazenamento local.");
+      }
+    }
+    function zerarContador() {
+      if (typeof Storage !== "undefined") {
+        localStorage.removeItem("contador");
+        atualizarContador(0);
+      } else {
+        alert(
+          "Seu navegador não suporta a funcionalidade de armazenamento local. O contador não será persistido após fechar a página."
+        );
+      }
+    }
+
+    const incrementarBtn = document.getElementById("incrementarBtn");
+    const zerarBtn = document.getElementById("zerarBtn");
+
+    incrementarBtn.addEventListener("click", incrementarContador);
+    zerarBtn.addEventListener("click", zerarContador);
+
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof Storage !== "undefined") {
+        let contador = parseInt(localStorage.getItem("contador") || 0);
+        atualizarContador(contador);
+      }
+    });
+  </script>
+</html>

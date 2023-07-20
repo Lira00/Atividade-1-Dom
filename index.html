@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade manipulação DOM</title>
+  </head>
+  <body>
+    <button id="btnMudarTexto">CLIQUE AQUI PARA MUDAR O TEXTO</button>
+    <p id="mensagem">AQUI VAI APARECER ALGUMA COISA...</p>
+  </body>
+  <script>
+    function MudarTexto() {
+      var nome = prompt("Digite o seu nome:");
+      if (nome) {
+        document.getElementById("mensagem").innerText =
+          "E aí " + nome + "! Você está deixando o seu site dinâmico.";
+      }
+    }
+    document
+      .getElementById("btnMudarTexto")
+      .addEventListener("click", MudarTexto);
+  </script>
+</html>
